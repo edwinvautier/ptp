@@ -1,0 +1,12 @@
+<section class="splash">
+  <div class="stage" aria-hidden="true">
+    <p class="stack" [class.is-words]="phase() === 'words'">
+      <span><b>P</b><i class="rest">aye</i></span>
+      <span><b>T</b><i class="rest">on</i></span>
+      <span><b>P</b><i class="rest">ied</i></span>
+    </p>
+  </div>
+  <button type="button" class="hit" (click)="finish()">
+    <span class="sr-only">Paye Ton Pied. Passer l'introduction.</span>
+  </button>
+</section>

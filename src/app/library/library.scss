@@ -1,0 +1,122 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.library {
+  padding: 0.9rem;
+}
+
+.empty {
+  margin: 2.5rem 0.5rem;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 1rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  border-radius: inherit;
+  overflow: hidden;
+  background: #fff;
+}
+
+.thumb img {
+  object-fit: cover;
+}
+
+.frame img {
+  object-fit: contain;
+}
+
+button:focus-visible {
+  outline: 3px solid #c9184a;
+  outline-offset: 3px;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: #1c1214;
+  display: flex;
+  flex-direction: column;
+  padding: max(0.8rem, env(safe-area-inset-top)) 0.8rem max(0.8rem, env(safe-area-inset-bottom));
+}
+
+.lightbox button {
+  align-self: stretch;
+  width: 100%;
+  margin-top: 0.7rem;
+  min-height: 3.25rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 999px;
+  background: #fff6ea;
+  color: #1c1214;
+  font-weight: 600;
+}
+
+.lightbox .candle {
+  background: #c9184a;
+  color: #fff6ea;
+  line-height: 1.2;
+}
+
+.lightbox .candle:focus-visible {
+  outline-color: #fff6ea;
+}
+
+.weird {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 1.5rem;
+  border-radius: 0;
+  background: #ff2e63;
+  color: #fff6ea;
+  font-family: Syne, 'Arial Black', sans-serif;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+}

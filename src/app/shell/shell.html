@@ -1,0 +1,21 @@
+<div class="phone">
+  <header>
+    <button type="button" class="brand" (click)="replayIntro()">PTP</button>
+    <p class="credits" [attr.aria-label]="'Crédits : ' + credits()">{{ credits() }} cr</p>
+  </header>
+  <main>
+    <router-outlet />
+  </main>
+  <nav aria-label="Navigation">
+    <a
+      routerLink="/"
+      routerLinkActive="is-active"
+      ariaCurrentWhenActive="page"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Découvrir</a
+    >
+    <a routerLink="/collection" routerLinkActive="is-active" ariaCurrentWhenActive="page"
+      >Collection</a
+    >
+  </nav>
+</div>

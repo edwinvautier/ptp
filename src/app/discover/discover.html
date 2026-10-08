@@ -1,0 +1,109 @@
+<section class="deck">
+  <h1 class="sr-only">Découvrir</h1>
+  @if (visible().length === 0) {
+    <p class="empty">Plus de beaux pieds à découvrir.</p>
+  } @else {
+    <div class="stack">
+      @for (photo of backList(); track photo.id) {
+        <article class="card is-back" aria-hidden="true">
+          <div class="frame">
+            <img
+              [ngSrc]="photo.src"
+              fill
+              priority
+              disableOptimizedSrcset
+              alt=""
+              [style.filter]="blur"
+            />
+          </div>
+        </article>
+      }
+      @for (photo of topList(); track photo.id) {
+        <article
+          class="card"
+          [style.transform]="topTransform()"
+          [style.transition]="cardTransition()"
+          [style.pointerEvents]="busy() ? 'none' : 'auto'"
+          (pointerdown)="onPointerDown($event)"
+          (pointermove)="onPointerMove($event)"
+          (pointerup)="onPointerUp($event)"
+          (pointercancel)="onPointerUp($event)"
+        >
+          <div class="frame">
+            <img
+              [ngSrc]="photo.src"
+              fill
+              priority
+              disableOptimizedSrcset
+              alt="Photo de pied floutée"
+              [style.filter]="blur"
+            />
+          </div>
+          <p class="price">{{ prettyPrice }} crédits</p>
+          <p class="stamp yes" aria-hidden="true" [style.opacity]="yesOpacity()">Oui</p>
+          <p class="stamp no" aria-hidden="true" [style.opacity]="noOpacity()">Non</p>
+        </article>
+      }
+    </div>
+  }
+  <p class="message" aria-live="polite">{{ message() }}</p>
+  <div class="actions">
+    <button
+      type="button"
+      class="pass"
+      (click)="pass()"
+      [disabled]="busy() || visible().length === 0"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+      <span class="sr-only">Passer</span>
+    </button>
+    <button
+      type="button"
+      class="buy"
+      (click)="buy()"
+      [disabled]="busy() || visible().length === 0"
+      [attr.aria-label]="'Acheter pour ' + prettyPrice + ' crédits'"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 20s-7-4.35-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.65-7 9-7 9z" />
+      </svg>
+    </button>
+  </div>
+</section>
+
+@if (reveal(); as shot) {
+  <div
+    class="reveal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Photo achetée"
+    [style.--ptp-blur.px]="blurPx"
+  >
+    <div class="shot">
+      <img
+        [ngSrc]="shot.photo.src"
+        fill
+        priority
+        disableOptimizedSrcset
+        alt="Photo de pied achetée"
+      />
+    </div>
+    @if (shot.ugly) {
+      <p class="why" aria-hidden="true">
+        Pas assez de crédits. Tu repars avec un pied moche.
+      </p>
+    }
+    <button
+      type="button"
+      class="hit"
+      (click)="dismissReveal()"
+      [attr.aria-label]="
+        shot.ugly
+          ? 'Pas assez de crédits. Tu repars avec un pied moche. Continuer.'
+          : 'Continuer'
+      "
+    ></button>
+  </div>
+}

@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "node scripts/scan-feet.mjs --serve",
+    "build": "node scripts/scan-feet.mjs && ng build",
+    "watch": "node scripts/scan-feet.mjs && ng build --watch --configuration development",
+    "test": "node scripts/scan-feet.mjs && ng test"
   },
   "private": true,
   "packageManager": "npm@11.17.0",
