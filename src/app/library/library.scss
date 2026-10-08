@@ -58,6 +58,26 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+li button {
+  transition: box-shadow 0.5s ease;
+}
+
+li button.is-glow {
+  box-shadow:
+    0 0 0 2px #ff2e63,
+    0 0 16px 1px rgb(255 46 99 / 0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  li button {
+    transition: none;
+  }
+
+  li button.is-glow {
+    box-shadow: none;
+  }
+}
+
 .lightbox {
   position: fixed;
   inset: 0;

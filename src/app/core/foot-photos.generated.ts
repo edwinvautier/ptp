@@ -2,6 +2,7 @@ import type { FootPhoto } from "./ptp.config";
 
 // Généré par scripts/scan-feet.mjs à partir de public/feet/pretty et public/feet/ugly.
 export const FOOT_PHOTOS: readonly FootPhoto[] = [
+  { id: "pretty-first.jpg", src: "feet/pretty/first.jpg", tier: "pretty" },
   {
     id: "pretty-pretty_1.jpg",
     src: "feet/pretty/pretty_1.jpg",
@@ -15,11 +16,6 @@ export const FOOT_PHOTOS: readonly FootPhoto[] = [
   {
     id: "pretty-pretty_3.jpg",
     src: "feet/pretty/pretty_3.jpg",
-    tier: "pretty",
-  },
-  {
-    id: "pretty-PXL_20261007_204904055.jpg",
-    src: "feet/pretty/PXL_20261007_204904055.jpg",
     tier: "pretty",
   },
   { id: "ugly-ugly_1.jpg", src: "feet/ugly/ugly_1.jpg", tier: "ugly" },

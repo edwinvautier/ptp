@@ -11,15 +11,19 @@ const imageExtensions = new Set(['.avif', '.gif', '.jpeg', '.jpg', '.png', '.svg
 
 function photosIn(tier) {
   const directory = join(root, 'public', 'feet', tier);
-  return readdirSync(directory, { withFileTypes: true })
+  const names = readdirSync(directory, { withFileTypes: true })
     .filter((entry) => entry.isFile() && imageExtensions.has(extname(entry.name).toLowerCase()))
     .map((entry) => entry.name)
-    .sort((a, b) => a.localeCompare(b, 'fr', { numeric: true, sensitivity: 'base' }))
-    .map((name) => ({
-      id: `${tier}-${name}`,
-      src: `feet/${tier}/${name}`,
-      tier,
-    }));
+    .sort((a, b) => a.localeCompare(b, 'fr', { numeric: true, sensitivity: 'base' }));
+  const pinned = tier === 'pretty' ? names.indexOf('first.jpg') : -1;
+  if (pinned > 0) {
+    names.unshift(names.splice(pinned, 1)[0]);
+  }
+  return names.map((name) => ({
+    id: `${tier}-${name}`,
+    src: `feet/${tier}/${name}`,
+    tier,
+  }));
 }
 
 function quote(value) {

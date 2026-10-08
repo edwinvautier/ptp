@@ -21,14 +21,14 @@ describe('Library', () => {
       ...fixture.nativeElement.querySelectorAll('.lightbox button'),
     ] as HTMLButtonElement[];
     expect(lightboxButtons.map((button) => button.textContent?.trim())).toEqual([
-      'acheter une bougie parfumée',
+      'Acheter une bougie parfumée',
       'Fermer',
     ]);
 
     lightboxButtons[0].click();
     await fixture.whenStable();
     const weird = fixture.nativeElement.querySelector('.weird') as HTMLButtonElement;
-    expect(weird.textContent?.trim()).toBe("t'es bizarre un peu non ?");
+    expect(weird.textContent?.trim()).toBe("T'es bizarre un peu non ?");
 
     weird.click();
     await fixture.whenStable();

@@ -6,7 +6,12 @@
     <ul>
       @for (photo of photos(); track photo.id; let i = $index) {
         <li>
-          <button type="button" (click)="open(photo, $event)" aria-label="Agrandir la photo">
+          <button
+            type="button"
+            (click)="open(photo, $event)"
+            aria-label="Agrandir la photo"
+            [class.is-glow]="glowing(i)"
+          >
             <span class="thumb">
               <img [ngSrc]="photo.src" fill disableOptimizedSrcset alt="" [priority]="i < 2" />
             </span>
@@ -31,7 +36,7 @@
       <img [ngSrc]="photo.src" fill priority disableOptimizedSrcset alt="Photo de pied achetée" />
     </div>
     <button #candleButton type="button" class="candle" (click)="openCandle($event)">
-      acheter une bougie parfumée
+      Acheter une bougie parfumée
     </button>
     <button #closeButton type="button" (click)="close(); $event.stopPropagation()">Fermer</button>
   </div>
@@ -45,6 +50,6 @@
     (click)="closeCandle()"
     (keydown)="onWeirdKeydown($event)"
   >
-    t'es bizarre un peu non ?
+    T'es bizarre un peu non ?
   </button>
 }
